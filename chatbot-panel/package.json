@@ -1,0 +1,30 @@
+{
+  "name": "custom-chatbot-panel",
+  "version": "1.0.0",
+  "description": "Chatbot UI panel",
+  "scripts": {
+    "build": "grafana-toolkit plugin:build",
+    "test": "grafana-toolkit plugin:test",
+    "dev": "grafana-toolkit plugin:dev",
+    "watch": "grafana-toolkit plugin:dev --watch",
+    "sign": "grafana-toolkit plugin:sign",
+    "start": "yarn watch"
+  },
+  "author": "nourhankhalifa",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@grafana/toolkit": "latest"
+  },
+  "dependencies": {
+    "@babel/core": "^7.27.4",
+    "@grafana/data": "latest",
+    "@grafana/runtime": "^12.0.1",
+    "@grafana/ui": "latest",
+    "@types/lodash": "^4.17.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
