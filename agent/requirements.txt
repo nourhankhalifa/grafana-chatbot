@@ -3,5 +3,5 @@ uvicorn
 requests
 openai
 python-dotenv
-langchain-ollama
+langchain_community
 langchain
