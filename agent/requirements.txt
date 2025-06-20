@@ -4,4 +4,4 @@ requests
 openai
 python-dotenv
 langchain_community
-langchain
+router

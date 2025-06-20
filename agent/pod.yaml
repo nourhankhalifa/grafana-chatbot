@@ -21,6 +21,11 @@ spec:
         env:
         - name: LOKI_URL
           value: "http://loki.monitoring.svc.cluster.local:3100"
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-api-key
+              key: OPENAI_API_KEY
 ---
 apiVersion: v1
 kind: Service
