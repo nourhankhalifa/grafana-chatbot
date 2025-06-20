@@ -93,6 +93,9 @@ def extract_time_range(prompt: str, default_seconds: int = 300):
     else:
         return default_seconds
 
+def is_summary_request(prompt: str) -> bool:
+    summary_keywords = ["summarize", "what happened", "issue with", "what is wrong", "errors in general"]
+    return any(keyword in prompt.lower() for keyword in summary_keywords)
 
 @app.post("/query")
 async def query_from_prompt(request: Request):
@@ -124,13 +127,34 @@ async def query_from_prompt(request: Request):
         return {"error": "Loki query failed", "logql": logql, "details": loki_response.text}
 
     data = loki_response.json()
-    # return {"logql": logql, "result": data}
+
+    # Collect raw log lines
+    log_lines = []
+    for stream in data.get("data", {}).get("result", []):
+        for _, value in stream["values"]:
+            log_lines.append(value)
+
+    # Trim to avoid overload
+    trimmed_logs = "\n".join(log_lines[:50])
+
+    # If user asked for a summary, send logs to LLM
+    if is_summary_request(prompt):
+        summarization_prompt = f"""
+        Summarize the following logs:\n\n{trimmed_logs}
+        """
+        response = llm.invoke([HumanMessage(content=summarization_prompt)])
+        return {
+            "logql": logql,
+            "message": response.content.strip()
+        }
+    if not log_lines:
+        response = llm.invoke([HumanMessage(content=prompt)])
+        return {
+            "logql": logql,
+            "message": response.content.strip()
+        }
+    # Otherwise return logs
     return {
         "logql": logql,
-        "message": [
-            {
-                "text": stream["values"]
-            }
-            for stream in data.get("data", {}).get("result", [])
-        ]
+        "message": [{"text": log_lines}]
     }
