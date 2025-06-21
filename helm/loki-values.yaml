@@ -1,0 +1,3 @@
+loki:
+  image:
+    tag: 2.9.2

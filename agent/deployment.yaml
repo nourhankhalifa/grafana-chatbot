@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logql-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logql-agent
+  template:
+    metadata:
+      labels:
+        app: logql-agent
+    spec:
+      containers:
+      - name: logql-agent
+        image: agent:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        env:
+        - name: LOKI_URL
+          value: "http://loki.monitoring.svc.cluster.local:3100"
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-api-key
+              key: OPENAI_API_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logql-agent
+spec:
+  selector:
+    app: logql-agent
+  ports:
+  - port: 80
+    targetPort: 8000
