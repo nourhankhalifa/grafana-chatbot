@@ -258,7 +258,8 @@ Then open [http://localhost:3000](http://localhost:3000)
 
 ```text
 "Show all logs from namespace monitoring in the last 5 minutes"
-"Summarize errors for pod auth-service"
+"summarize what happened in loki-0 in the last 5 minute"
+"explain what happened in grafana in last 15 minutes"
 "Get logs from loki-0 for the past 2 hours"
 ```
 
