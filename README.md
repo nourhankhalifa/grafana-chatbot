@@ -210,6 +210,10 @@ extraVolumes:
 persistence:
   enabled: false
 ```
+Note that the plugin name (custom-chatbot-panel) should be the same as the plugin id defined in plugin.json
+
+Then add the chatbot panel to your dashboard
+<img width="1440" alt="Screenshot 2025-06-21 at 4 01 04 PM" src="https://github.com/user-attachments/assets/9bbbd643-3b30-42c1-88ea-1cb28a910016" />
 
 ---
 
@@ -246,6 +250,12 @@ kubectl port-forward -n monitoring svc/grafana 3000:80
 
 Then open [http://localhost:3000](http://localhost:3000)
 
+### Port forward Agent:
+
+```bash
+kubectl port-forward svc/logql-agent 8000:80 -n monitoring
+```
+
 ### Set up Loki data source:
 
 * **Name**: `loki`
@@ -262,6 +272,7 @@ Then open [http://localhost:3000](http://localhost:3000)
 "explain what happened in grafana in last 15 minutes"
 "Get logs from loki-0 for the past 2 hours"
 ```
+<img width="1440" alt="Screenshot 2025-06-21 at 4 00 06 PM" src="https://github.com/user-attachments/assets/d3064c07-37b5-40bc-8a11-ce587eb76cf5" />
 
 ---
 
