@@ -1,8 +1,8 @@
 import time
 import requests
-from app.config import LOKI_URL
-from app.utils.time_parsing import extract_time_range, strip_time_phrase
-from app.services.summarizer import convert_prompt_to_logql, get_summary, is_summary_request
+from agent.config import LOKI_URL
+from agent.utils.time_parsing import extract_time_range, strip_time_phrase
+from agent.services.summarizer import convert_prompt_to_logql, get_summary, is_summary_request
 from langchain.schema import HumanMessage
 
 async def query_loki(prompt: str):

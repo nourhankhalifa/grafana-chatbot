@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, HTTPException
-from app.models.request import PromptRequest
-from app.services.logql import query_loki
-from app.services.summarizer import get_summary, is_summary_request
+from agent.models.request import PromptRequest
+from agent.services.logql import query_loki
+from agent.services.summarizer import get_summary, is_summary_request
 
 router = APIRouter()
 

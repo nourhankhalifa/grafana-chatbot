@@ -1,4 +1,4 @@
-from app.config import OPENAI_API_KEY
+from agent.config import OPENAI_API_KEY
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage
 
@@ -14,7 +14,7 @@ def convert_prompt_to_logql(natural_language: str) -> str:
     Return ONLY the logQL query without any explanations.
 
     Examples:
-    - Input: "Get logs for app payment-api"
+    - Input: "Get logs for payment-api"
     - Output: {{app="payment-api"}}
     
     - Input: "Show logs from the dev namespace"
@@ -36,11 +36,11 @@ def convert_prompt_to_logql(natural_language: str) -> str:
     return response.content.strip()
 
 def is_summary_request(prompt: str) -> bool:
-    summary_keywords = ["summarize", "what happened", "issue", "errors", "explain"]
+    summary_keywords = ["summarize", "what happened", "explain"]
     return any(k in prompt.lower() for k in summary_keywords)
 
 def get_summary(log_lines: list[str]) -> str:
     logs = "\n".join(log_lines[:50])
-    prompt = f"Summarize the following logs:\n\n{logs}"
+    prompt = f"""Summarize the following logs:\n\n{logs}"""
     response = llm.invoke([HumanMessage(content=prompt)])
     return response.content.strip()
