@@ -53,7 +53,3 @@ make test # run unit tests
 
 make clean # clean build artifacts and node_modules
 ```
-
-## Branch protection rules
-
-Branch protection should be configured in the GitHub repository UI: Settings → Code and automation → Rulesets. Use the `protection-test` branch to trial any changes before enabling repository-wide restrictions.
