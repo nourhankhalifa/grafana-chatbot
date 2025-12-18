@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-requests
-openai
-python-dotenv
-langchain_community
-router
