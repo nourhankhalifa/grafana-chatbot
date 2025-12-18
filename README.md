@@ -6,7 +6,7 @@ Repository layout:
 
 ```sh
 .
-├── chatbot-panel
+├── chatbot-panel-plugin
 │   ├── CHANGELOG.md         # Change log for the plugin
 │   ├── jest.config.js       # Jest configuration for tests
 │   ├── LICENSE              # License file
@@ -40,7 +40,7 @@ Key files explained:
 
 ## Build & test
 
-This repository includes a top-level `Makefile`, Use these targets from the repository root.
+This repository includes a top-level `Makefile`. Use these targets from the repository root.
 
 Example commands:
 
