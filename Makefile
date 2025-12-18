@@ -8,6 +8,14 @@ help:
 
 install:
 	@echo "Installing dependencies for $(CHATBOT_DIR)..."
+	# Ensure a package-lock exists for consistent installs and audit commands
+	if [ ! -f $(CHATBOT_DIR)/package-lock.json ]; then \
+		if [ -f $(CHATBOT_DIR)/package.json ]; then \
+			cd $(CHATBOT_DIR) && npm i --package-lock-only; \
+		else \
+			echo "Warning: $(CHATBOT_DIR)/package.json not found; skipping lockfile creation"; \
+		fi \
+	fi
 	cd $(CHATBOT_DIR) && npm ci
 
 build:

@@ -13,7 +13,7 @@
   "author": "nourhankhalifa",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@grafana/toolkit": "latest"
+    "@grafana/toolkit": "^10.1.10"
   },
   "dependencies": {
     "@babel/core": "^7.27.4",
